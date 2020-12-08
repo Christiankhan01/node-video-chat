@@ -22,6 +22,7 @@
     "etag": "^1.8.1",
     "express": "^4.17.1",
     "finalhandler": "^1.1.2",
+    "font-awesome": "^4.7.0",
     "forwarded": "^0.1.2",
     "fresh": "^0.5.2",
     "http-errors": "^1.7.2",
