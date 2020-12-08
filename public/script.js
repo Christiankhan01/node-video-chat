@@ -23,11 +23,12 @@ navigator.mediaDevices.getUserMedia({
     myVideoStream = stream;
     addVideoStream(myVideo, stream)
     
+    //new user calls us
     peer.on('call', call => {
-        call.answer(stream)
+        call.answer(stream) //answer call
         const video=document.createElement('video')
         call.on('stream', userVideoStream => {
-            addVideoStream(video, userVideoStream)
+            addVideoStream(video, userVideoStream) //add new user to YOUR video stream
         })
     })
     //listen on 'user-connected' for new user
@@ -48,7 +49,7 @@ const connectToNewUser = (userId, stream) => {
     const call = peer.call(userId, stream) //call new user
     const video = document.createElement('video') //create new video stream
     call.on('stream', userVideoStream => {
-        addVideoStream(video, userVideoStream) 
+        addVideoStream(video, userVideoStream) //send new user Your stream
     })
 }
 
