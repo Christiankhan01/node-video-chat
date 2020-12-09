@@ -2,6 +2,8 @@
 
 //Access Media - video and audio
 
+
+
 const socket = io('/');
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video');
@@ -61,3 +63,14 @@ const addVideoStream = (video, stream) => {
     videoGrid.append(video);
 }
 
+let text = $('input')
+ 
+
+
+$('html').keydown((e) => { //if a key is pressed
+    if(e.which == 13 && text.val().length !== 0) { //and that key is ENTER and the value of the message !== 0
+        console.log(text.val()); 
+        socket.emit('message', text.val()); //emit the message
+        text.val('')//then reset/clear input 
+    }
+})
