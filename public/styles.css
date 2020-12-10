@@ -99,3 +99,8 @@ video {
 .leave_meeting {
     color: #EB534B
 }
+
+.messages {
+    color: floralwhite;
+    list-style: none;
+}

@@ -31,6 +31,9 @@ io.on('connection', socket => {
         socket.join(roomId); 
         //broadcast to room that user has connected 
         socket.to(roomId).broadcast.emit('user-connected', userId); 
+        socket.on('message', message => {
+            io.to(roomId).emit('createMessage', message); 
+        })
     })
 })
 
