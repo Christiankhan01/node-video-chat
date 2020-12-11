@@ -94,6 +94,7 @@ video {
 
 .main__chat__window {
     flex-grow: 1;
+    overflow-y: scroll;
 }
 
 .leave_meeting {
@@ -103,4 +104,8 @@ video {
 .messages {
     color: floralwhite;
     list-style: none;
+}
+
+.unmute {
+    color: #CC3B33;
 }
