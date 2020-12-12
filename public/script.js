@@ -1,9 +1,4 @@
-
-
 //Access Media - video and audio
-
-
-
 const socket = io('/');
 const videoGrid = document.getElementById('video-grid');
 const myVideo = document.createElement('video');
@@ -12,12 +7,11 @@ myVideo.muted = true;
 var peer = new Peer(undefined, {
     path: '/peerjs',
     host: '/',
-    port: '9015'
+    port: '443'
 });
 
 //global variable declation for YOUR video stream 
 let myVideoStream
-
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
@@ -35,12 +29,16 @@ navigator.mediaDevices.getUserMedia({
     })
     //listen on 'user-connected' for new user
     socket.on('user-connected', (userId) => {
+  
         /**
         **passing the stream of the original user to the socket {look in promise}
         **to be passed to all other users in room
         */
         connectToNewUser(userId, stream);
+        
+
     })
+
     let text = $('input')
     $('html').keydown((e) => { //if a key is pressed
         if (e.which == 13 && text.val().length !== 0) { //and that key is ENTER and the value of the message !== 0
@@ -51,7 +49,7 @@ navigator.mediaDevices.getUserMedia({
     });
     //send message to server
     socket.on('createMessage', message => {
-        $('ul').append(`<li class="message"><b>user</b><br/>${message}</li>`)
+        $('ul').append(`<li class="message"><b>user1</b><br/>${message}</li>`)
     })
 })
 peer.on('open', id => {
@@ -112,30 +110,30 @@ const setUnmuteButton = () => {
 }
 
 const playStop = () => {
-    let enabled = myVideoStream.getVideoTracks()[0].enabled; 
+    let enabled = myVideoStream.getVideoTracks()[0].enabled;
     if (enabled) {
-        myVideoStream.getVideoTracks()[0].enabled = false; 
-        setPlayVideo() 
+        myVideoStream.getVideoTracks()[0].enabled = false;
+        setPlayVideo()
     } else {
-        setStopVideo() 
-        myVideoStream.getVideoTracks()[0].enabled=true; 
+        setStopVideo()
+        myVideoStream.getVideoTracks()[0].enabled = true;
     }
 }
 
 const setPlayVideo = () => {
-    const html =   `
+    const html = `
     <i class="stop fas fa-video-slash"></i>
     <span>Play Video</span>
     `
-    document.querySelector('.main__video__button').innerHTML = html; 
+    document.querySelector('.main__video__button').innerHTML = html;
 }
 
 const setStopVideo = () => {
-    const html =   `
+    const html = `
     <i class="fas fa-video"></i>
     <span>Stop Video</span>
     `
-    document.querySelector('.main__video__button').innerHTML = html; 
+    document.querySelector('.main__video__button').innerHTML = html;
 }
 
 
